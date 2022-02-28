@@ -4,7 +4,7 @@ class User < ApplicationRecord
          :registerable,
          jwt_revocation_strategy: JwtDenylist
 
-  has_many :reservations
+  has_many :leases
 
   validates :name, presence: true
 end
