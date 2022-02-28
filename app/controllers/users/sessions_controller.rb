@@ -1,23 +1,27 @@
-class Users::SessionsController < Devise::SessionsController
-  respond_to :json
+# frozen_string_literal: true
 
-  private
+module Users
+  class SessionsController < Devise::SessionsController
+    respond_to :json
 
-  def respond_with(resource, _opts = {})
-    render json: { message: 'You are logged in.' }, status: :ok
-  end
+    private
 
-  def respond_to_on_destroy
-    log_out_success && return if current_user
+    def respond_with(_resource, _opts = {})
+      render json: { message: 'You are logged in.' }, status: :ok
+    end
 
-    log_out_failure
-  end
+    def respond_to_on_destroy
+      log_out_success && return if current_user
 
-  def log_out_success
-    render json: { message: "You are logged out." }, status: :ok
-  end
+      log_out_failure
+    end
 
-  def log_out_failure
-    render json: { message: "Hmm nothing happened."}, status: :unauthorized
+    def log_out_success
+      render json: { message: 'You are logged out.' }, status: :ok
+    end
+
+    def log_out_failure
+      render json: { message: 'Hmm nothing happened.' }, status: :unauthorized
+    end
   end
 end
