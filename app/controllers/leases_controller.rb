@@ -13,4 +13,24 @@ class LeasesController < ApplicationController
     render json: @lease
   end
 
+  # POST /leases
+  def create
+    @lease = Lease.new(lease_params)
+
+    if @lease.save
+      render json: @lease, status: :created, location: @lease
+    else
+      render json: @lease.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /leases/1
+  def update
+    if @lease.update(lease_params)
+      render json: @lease
+    else
+      render json: @lease.errors, status: :unprocessable_entity
+    end
+  end
+
 end
