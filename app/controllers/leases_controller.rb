@@ -33,4 +33,19 @@ class LeasesController < ApplicationController
     end
   end
 
+  # DELETE /leases/1
+  def destroy
+    @lease.destroy
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_lease
+      @lease = Lease.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def lease_params
+      params.require(:lease).permit(:from, :to, :cancelled, :user_id, :apartment_id)
+    end
 end
