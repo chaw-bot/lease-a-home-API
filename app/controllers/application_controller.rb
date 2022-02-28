@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ApplicationController < ActionController::API
   before_action :update_allowed_parameters, if: :devise_controller?
 
