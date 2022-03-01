@@ -3,7 +3,8 @@ class LeasesController < ApplicationController
 
   # GET /leases
   def index
-    @leases = Lease.all
+    puts params
+    @leases = User.find(params[:user_id]).leases
 
     render json: @leases
   end
