@@ -2,6 +2,7 @@ class CreateApartments < ActiveRecord::Migration[7.0]
   def change
     create_table :apartments do |t|
       t.string :name, default: "", null: false
+      t.text :description, default: "", null: false
       t.string :image, default: "", null: false
       t.string :interior, default: [], null: false, array: true
       t.decimal :maintenance_fee, default: 0, null: false

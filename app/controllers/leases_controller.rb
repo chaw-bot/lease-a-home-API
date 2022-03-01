@@ -3,7 +3,8 @@ class LeasesController < ApplicationController
 
   # GET /leases
   def index
-    @leases = Lease.all
+    puts params
+    @leases = User.find(params[:user_id]).leases
 
     render json: @leases
   end
@@ -18,6 +19,7 @@ class LeasesController < ApplicationController
     @lease = Lease.new(lease_params)
 
     if @lease.save
+      @lease.apartment.reservation_expiry_date = @lease.to
       render json: @lease, status: :created, location: @lease
     else
       render json: @lease.errors, status: :unprocessable_entity
