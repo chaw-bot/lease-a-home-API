@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_01_103908) do
 
   create_table "apartments", force: :cascade do |t|
     t.string "name", default: "", null: false
+    t.text "description", default: "", null: false
     t.string "image", default: "", null: false
     t.string "interior", default: [], null: false, array: true
     t.decimal "maintenance_fee", default: "0.0", null: false
