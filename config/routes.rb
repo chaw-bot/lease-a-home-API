@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :apartments
   resources :leases
   get '/member-data', to: 'members#show'
+  get '/users', to: 'users#index'         
 end
