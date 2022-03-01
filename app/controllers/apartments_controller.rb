@@ -13,11 +13,11 @@ class ApartmentsController < ApplicationController
     end
   end
 
-  def create 
+  def create
     apartment = Apartment.new(apartment_params)
     apartment.reservation_expiry_date = Date.civil(DateTime.now.year, DateTime.now.month, -1) - 1.month
     if apartment.save
-      render json: {success: true, apartment:apartment}, status: :created
+      render json: { success: true, apartment: apartment }, status: :created
     else
       render json: apartment.errors, status: :unprocessable_entity
     end
@@ -25,6 +25,6 @@ class ApartmentsController < ApplicationController
 
   def apartment_params
     params.require(:apartment).permit(:name, :image, :description, :maintenance_fee, :monthly_rent, :city,
-                                           interior: [])
+                                      interior: [])
   end
 end
