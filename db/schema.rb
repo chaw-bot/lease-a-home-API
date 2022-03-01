@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_28_125103) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_01_103908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apartments", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "image", default: "", null: false
+    t.string "interior", default: [], null: false, array: true
+    t.decimal "maintenance_fee", default: "0.0", null: false
+    t.decimal "monthly_rent", default: "0.0", null: false
+    t.string "city", default: "", null: false
+    t.date "reservation_expiry_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
@@ -20,18 +32,31 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_28_125103) do
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "leases", force: :cascade do |t|
+    t.date "from"
+    t.date "to"
+    t.boolean "cancelled"
+    t.bigint "user_id", null: false
+    t.bigint "apartment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apartment_id"], name: "index_leases_on_apartment_id"
+    t.index ["user_id"], name: "index_leases_on_user_id"
+  end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "leases", "apartments"
+  add_foreign_key "leases", "users"
 end
