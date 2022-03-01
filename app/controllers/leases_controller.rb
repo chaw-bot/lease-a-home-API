@@ -1,5 +1,5 @@
 class LeasesController < ApplicationController
-  before_action :set_lease, only: %i[ show update destroy ]
+  before_action :set_lease, only: %i[show update destroy]
 
   # GET /leases
   def index
@@ -39,13 +39,14 @@ class LeasesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lease
-      @lease = Lease.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def lease_params
-      params.require(:lease).permit(:from, :to, :cancelled, :user_id, :apartment_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lease
+    @lease = Lease.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def lease_params
+    params.require(:lease).permit(:from, :to, :cancelled, :user_id, :apartment_id)
+  end
 end
