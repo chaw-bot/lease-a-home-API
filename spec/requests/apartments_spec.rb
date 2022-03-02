@@ -24,6 +24,18 @@ RSpec.describe 'Leases', type: :request do
       expect('Apart1').to eq(Apartment.last.name)
     end
 
-
+    before(:example) do
+  
+      @apartment = Apartment.create(name: 'Apart1', description: 'Cool',
+                                    image: 'image.png', interior: ['one'],
+                                    maintenance_fee: 100,
+                                    monthly_rent: 200, city: 'Lagos', reservation_expiry_date: DateTime.now)
+    
+      get "/apartments/#{@apartment.id}"
+    end
+    it 'is a success' do
+      res = JSON.parse(response.body)
+        expect(JSON.parse(response.body)['id']).to eq(@apartment.id)
+    end
   end
 end
