@@ -1,6 +1,3 @@
-# @user1 = User.create!(name: "Henry", email: "henry@gmail.com", password: "henrykc");
-# @user2 = User.create!(name: "Chaw", email: "chaw@gmail.com", password: "Chawanzi");
-
 now = DateTime.now
 date = Date.civil(now.year, now.month, -1) - 1.month
 houses = ['Bungalow', 'Beach house', 'Cape Cod house', 'Colonial house', 'Contemporary house', 'Contemporary Craftsman house', 'Country house', 'Craftsman house', 'English Cottage house', 'Farmhouse']
@@ -23,7 +20,4 @@ houses = ['Bungalow', 'Beach house', 'Cape Cod house', 'Colonial house', 'Contem
 
 # lease_months = 5
 # @lease1 = Lease.create!(from: @apartment1.reservation_expiry_date + 1.month, to: @apartment1.reservation_expiry_date + (1 + lease_months).month, cancelled: false, user_id: @user1.id, apartment_id: @apartment1.id)
-# @apartment1.reservation_expiry_date = @lease1.to
-
-# @lease2 = Lease.create!(from: @apartment1.reservation_expiry_date + 1.month, to: @apartment1.reservation_expiry_date + (1 + lease_months).month, cancelled: false, user_id: @user2.id, apartment_id: @apartment1.id)
 # @apartment1.reservation_expiry_date = @lease1.to
