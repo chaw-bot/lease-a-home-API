@@ -26,4 +26,8 @@ RSpec.describe Apartment, tyoe: :model do
     subject.image = nil
     expect(subject).to_not be_valid
   end
+
+  it 'should display apartment image' do
+    expect(subject.image).to eq(img)
+  end
 end

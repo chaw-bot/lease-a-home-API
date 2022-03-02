@@ -1,5 +1,5 @@
 require 'rails_helper'
-# :name, :image, :description, :maintenance_fee, :monthly_rent, :city,interior: []
+# :name, :image, :description, :maintenance_fee, :monthly_rent, :city,interir: []
 RSpec.describe User, type: :feature do
   describe 'Apartment' do
     date = Date.civil(DateTime.now.year, DateTime.now.month, -1) - 1.month
