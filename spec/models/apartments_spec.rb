@@ -30,4 +30,9 @@ RSpec.describe Apartment, tyoe: :model do
   it 'should display apartment image' do
     expect(subject.image).to eq(img)
   end
+
+  it 'should display apartment description' do
+    expect(subject.description).to eq(des)
+  end
+  
 end
