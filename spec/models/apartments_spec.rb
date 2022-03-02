@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Apartment, tyoe: :model do
+RSpec.describe Apartment, type: :model do
   date = Date.civil(DateTime.now.year, DateTime.now.month, -1) - 1.month
 
   int_img = ['https://res.cloudinary.com/henrykc/image/upload/v1646145705/lease_a_home_app/num5/livingroom5_wbwi2a.jpg']
@@ -23,7 +23,6 @@ RSpec.describe Apartment, tyoe: :model do
 
   it 'should not be a valid apartment' do
     subject.name = nil
-    subject.image = nil
     expect(subject).to_not be_valid
   end
 
@@ -34,5 +33,8 @@ RSpec.describe Apartment, tyoe: :model do
   it 'should display apartment description' do
     expect(subject.description).to eq(des)
   end
-  
+
+  it 'should display apartment reservation_expiry_date' do
+    expect(subject.reservation_expiry_date).to eq(date)
+  end
 end
