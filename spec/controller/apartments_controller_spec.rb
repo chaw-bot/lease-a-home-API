@@ -3,8 +3,20 @@ require 'rails_helper'
 RSpec.describe User, type: :feature do
   describe 'Apartment' do
     date = Date.civil(DateTime.now.year, DateTime.now.month, -1) - 1.month
-    subject { Apartment.create!(name: 'Farmhouse', description: 'This is a modern house with full options. Classis bedrooms, kitchen, swimming pool and more.', image: 'https://res.cloudinary.com/henrykc/image/upload/v1646145705/lease_a_home_app/num5/apartment5_qhbttz.png', interior: ['https://res.cloudinary.com/henrykc/image/upload/v1646145705/lease_a_home_app/num5/livingroom5_wbwi2a.jpg', 'https://res.cloudinary.com/henrykc/image/upload/v1646145704/lease_a_home_app/num5/bedroom5_w8tt48.jpg', 'https://res.cloudinary.com/henrykc/image/upload/v1646145704/lease_a_home_app/num5/bathroom5_epgjaz.png'], maintenance_fee: 100, monthly_rent: 300, city: 'Jos', reservation_expiry_date: date) }
 
+    int_img = ['https://res.cloudinary.com/henrykc/image/upload/v1646145705/lease_a_home_app/num5/livingroom5_wbwi2a.jpg']
+
+    img = 'https://res.cloudinary.com/henrykc/image/upload/v1646145705/lease_a_home_app/num5/apartment5_qhbttz.png'
+
+    des = 'This is a modern house with full options. Classis bedrooms, kitchen, swimming pool and more.'
+
+    # rubocop:disable Layout/LineLength
+    subject do
+      Apartment.create!(name: 'Farmhouse',
+                        description: des, image: img, interior: int_img, maintenance_fee: 100, monthly_rent: 300, city: 'Jos', reservation_expiry_date: date)
+    end
+
+    # rubocop:enable Layout/LineLength
     it { is_expected.to have_attributes(name: 'Farmhouse') }
 
     it 'should validate apartment' do
