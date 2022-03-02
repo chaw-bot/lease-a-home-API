@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_01_103908) do
   create_table "leases", force: :cascade do |t|
     t.date "from"
     t.date "to"
-    t.boolean "cancelled"
+    t.boolean "cancelled", default: false
     t.bigint "user_id", null: false
     t.bigint "apartment_id", null: false
     t.datetime "created_at", null: false
