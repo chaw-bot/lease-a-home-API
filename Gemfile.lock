@@ -134,7 +134,6 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-
     nokogiri (1.13.3)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
@@ -259,6 +258,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.0.3p157
+   ruby 2.7.0p0
+
 BUNDLED WITH
-   2.3.5
+   2.3.8
