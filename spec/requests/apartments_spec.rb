@@ -17,6 +17,7 @@ RSpec.describe 'Leases', type: :request do
     end
 
     it 'is a success' do
+      expect(response).to have_http_status(200)
       expect(@apartment.name).to eq(Apartment.last.name)
     end
 
@@ -29,6 +30,7 @@ RSpec.describe 'Leases', type: :request do
       get "/apartments/#{@apartment.id}"
     end
     it 'is a success' do
+      expect(response).to have_http_status(200)
       expect(JSON.parse(response.body)['id']).to eq(@apartment.id)
     end
   end
