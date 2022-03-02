@@ -1,5 +1,5 @@
-@user1 = User.create!(name: "Henry", email: "henry@gmail.com", password: "henrykc");
-@user2 = User.create!(name: "Chaw", email: "chaw@gmail.com", password: "Chawanzi");
+# @user1 = User.create!(name: "Henry", email: "henry@gmail.com", password: "henrykc");
+# @user2 = User.create!(name: "Chaw", email: "chaw@gmail.com", password: "Chawanzi");
 
 now = DateTime.now
 date = Date.civil(now.year, now.month, -1) - 1.month
@@ -21,9 +21,9 @@ houses = ['Bungalow', 'Beach house', 'Cape Cod house', 'Colonial house', 'Contem
 @apartment14 = Apartment.create!(name: houses[7], description: 'This is a modern house with full options. Classis bedrooms, kitchen, swimming pool and more.', image: 'https://res.cloudinary.com/henrykc/image/upload/v1646145703/lease_a_home_app/num4/apartment4_ce1rmn.jpg', interior: ['https://res.cloudinary.com/henrykc/image/upload/v1646145703/lease_a_home_app/num4/bathroom4_wvfadl.jpg', 'https://res.cloudinary.com/henrykc/image/upload/v1646145703/lease_a_home_app/num4/bedroom4_xthhuw.jpg', 'https://res.cloudinary.com/henrykc/image/upload/v1646145703/lease_a_home_app/num4/livingroom4_pjewln.jpg'], maintenance_fee: 100, monthly_rent: 300, city: 'Lagos', reservation_expiry_date: date)
 @apartment15 = Apartment.create!(name: houses[9], description: 'This is a modern house with full options. Classis bedrooms, kitchen, swimming pool and more.', image: 'https://res.cloudinary.com/henrykc/image/upload/v1646145705/lease_a_home_app/num5/apartment5_qhbttz.png', interior: ['https://res.cloudinary.com/henrykc/image/upload/v1646145705/lease_a_home_app/num5/livingroom5_wbwi2a.jpg', 'https://res.cloudinary.com/henrykc/image/upload/v1646145704/lease_a_home_app/num5/bedroom5_w8tt48.jpg', 'https://res.cloudinary.com/henrykc/image/upload/v1646145704/lease_a_home_app/num5/bathroom5_epgjaz.png'], maintenance_fee: 100, monthly_rent: 300, city: 'Jos', reservation_expiry_date: date)
 
-lease_months = 4
-@lease1 = Lease.create!(from: @apartment1.reservation_expiry_date + 1.month, to: @apartment1.reservation_expiry_date + (1 + lease_months).month, cancelled: false, user_id: @user1.id, apartment_id: @apartment1.id)
-@apartment1.reservation_expiry_date = @lease1.to
+# lease_months = 5
+# @lease1 = Lease.create!(from: @apartment1.reservation_expiry_date + 1.month, to: @apartment1.reservation_expiry_date + (1 + lease_months).month, cancelled: false, user_id: @user1.id, apartment_id: @apartment1.id)
+# @apartment1.reservation_expiry_date = @lease1.to
 
-@lease2 = Lease.create!(from: @apartment1.reservation_expiry_date + 1.month, to: @apartment1.reservation_expiry_date + (1 + lease_months).month, cancelled: false, user_id: @user2.id, apartment_id: @apartment1.id)
-@apartment1.reservation_expiry_date = @lease1.to
+# @lease2 = Lease.create!(from: @apartment1.reservation_expiry_date + 1.month, to: @apartment1.reservation_expiry_date + (1 + lease_months).month, cancelled: false, user_id: @user2.id, apartment_id: @apartment1.id)
+# @apartment1.reservation_expiry_date = @lease1.to

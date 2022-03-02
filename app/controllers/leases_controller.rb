@@ -3,7 +3,6 @@ class LeasesController < ApplicationController
 
   # GET /leases
   def index
-    puts params
     @leases = User.find(params[:user_id]).leases
 
     render json: @leases
