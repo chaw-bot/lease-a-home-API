@@ -10,7 +10,7 @@ module Users
       register_failed
     end
 
-    def register_success(resource)
+    def register_success(_resource)
       render json: { message: 'Signed up sucessfully.' }
     end
 
