@@ -11,7 +11,7 @@ module Users
     end
 
     def register_success(resource)
-      render json: { user: resource, message: 'Signed up sucessfully.' }
+      render json: { message: 'Signed up sucessfully.' }
     end
 
     def register_failed
