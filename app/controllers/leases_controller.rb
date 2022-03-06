@@ -15,6 +15,7 @@ class LeasesController < ApplicationController
 
   # POST /leases
   def create
+    puts params, 'params'
     @lease = Lease.new(lease_params)
 
     if @lease.save
