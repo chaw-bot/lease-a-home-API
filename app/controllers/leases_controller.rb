@@ -3,14 +3,18 @@ class LeasesController < ApplicationController
 
   # GET /leases
   def index
-    @leases = User.find(params[:user_id]).leases
-
-    render json: @leases
+    data = []
+    User.find(params[:user_id]).leases.each do |lease|
+      lease_data = { lease_details: lease, apartment_details: lease.apartment }
+      data << lease_data
+    end
+    render json: data
   end
 
   # GET /leases/1
   def show
-    render json: @lease
+    lease = { leaseDetails: @lease, apartmentDetails: @lease.apartment }
+    render json: lease
   end
 
   # POST /leases
