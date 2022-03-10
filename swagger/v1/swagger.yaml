@@ -75,11 +75,46 @@ paths:
           description: successful
     delete:
       summary: delete apartment
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+                interior:
+                  type: array
+                  items:
+                    type: string
+                maintenance_fee:
+                  type: number
+                monthly_rent:
+                  type: number
+                city:
+                  type: string
+                reservation_expiry_date:
+                  type: string
+                  format: datetime
+              required:
+              - name
+              - description
+              - image
+              - interior
+              - maintenance_fee
+              - monthly_rent
+              - city
+              - reservation_expiry_date
 servers:
 - url: http://{defaultHost}
   variables:
     defaultHost:
-      default: localhost:3000
+      default: www.example.com
