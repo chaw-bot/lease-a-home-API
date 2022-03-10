@@ -1,47 +1,122 @@
-require 'rails_helper'
+require 'swagger_helper'
 
-RSpec.describe 'Leases', type: :request do
-  describe 'GET /index' do
-    before(:example) do
-      @user1 = User.create(email: 'henry5897@gmail.com', password: 'kkkkkk', name: 'Henry Kc')
-      get "/user/#{@user1.id}/leases"
+RSpec.describe 'leases', type: :request do
+
+  path '/user/{user_id}/leases' do
+    # You'll want to customize the parameter types...
+    parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
+
+    get('list leases') do
+      response(200, 'successful') do
+        let(:user_id) { '123' }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
 
-    it 'Response is a success' do
-      expect(response).to have_http_status(:ok)
+    post('create lease') do
+      response(200, 'successful') do
+        let(:user_id) { '123' }
+
+        consumes 'application/json'
+        parameter name: :lease, in: :body, schema: {
+          type: :object,
+          properties: {
+            from: { type: :string, format: :datetime },
+            to: { type: :string, format: :datetime },
+            cancelled: { type: :boolean },
+            user_id: { type: :number},
+            apartment_id: { type: :number }
+          },
+          required: %w[from to cancelled user_id apartment_id]
+        }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+    end
+  end
+
+  path '/user/{user_id}/leases/{id}' do
+    # You'll want to customize the parameter types...
+    parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
+    parameter name: 'id', in: :path, type: :string, description: 'id'
+
+    get('show lease') do
+      response(200, 'successful') do
+        let(:user_id) { '123' }
+        let(:id) { '123' }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
 
-    before(:example) do
-      lease_months = 4
-      user = User.create(email: 'henry58979954@gmail.com', password: 'kkkkkk', name: 'Henry Kc')
-      apartment = Apartment.create(name: 'Apart1', description: 'Cool', image: 'image.png', interior: ['one'],
-                                   maintenance_fee: 100, monthly_rent: 200, city: 'Lagos',
-                                   reservation_expiry_date: DateTime.now)
+    patch('update lease') do
+      response(200, 'successful') do
+        let(:user_id) { '123' }
+        let(:id) { '123' }
 
-      Lease.create(from: DateTime.now + 1.month, to: (DateTime.now + (1 + lease_months).month), cancelled: false,
-                   user_id: user.id, apartment_id: apartment.id)
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
 
-    it 'is a success' do
-      expect(JSON.parse(response.body).size).to eq(1)
+    put('update lease') do
+      response(200, 'successful') do
+        let(:user_id) { '123' }
+        let(:id) { '123' }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
 
-    before(:example) do
-      lease_months = 4
-      @user3 = User.create(email: 'henry5897995@gmail.com',
-                           password: 'kkkkkk', name: 'Henry Kc')
-      @apartment = Apartment.create(name: 'Apart1', description: 'Cool',
-                                    image: 'image.png', interior: ['one'],
-                                    maintenance_fee: 100,
-                                    monthly_rent: 200, city: 'Lagos', reservation_expiry_date: DateTime.now)
-      @lease2 = Lease.new(from: @apartment.reservation_expiry_date + 1.month,
-                          to: @apartment.reservation_expiry_date + (1 + lease_months).month,
-                          cancelled: 1, user_id: @user3.id, apartment_id: @apartment.id)
-      @lease2.save
-      get "/user/#{@user3.id}/leases"
-    end
-    it 'is a success' do
-      expect(JSON.parse(response.body).size).to eq(1)
+    delete('delete lease') do
+      response(200, 'successful') do
+        let(:user_id) { '123' }
+        let(:id) { '123' }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
     end
   end
 end
