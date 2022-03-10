@@ -75,6 +75,24 @@ paths:
           description: successful
     delete:
       summary: delete apartment
+      responses:
+        '200':
+          description: successful
+  "/user/{user_id}/leases":
+    parameters:
+    - name: user_id
+      in: path
+      description: user_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list leases
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create lease
       parameters: []
       responses:
         '200':
@@ -85,36 +103,66 @@ paths:
             schema:
               type: object
               properties:
-                name:
-                  type: string
-                description:
-                  type: string
-                image:
-                  type: string
-                interior:
-                  type: array
-                  items:
-                    type: string
-                maintenance_fee:
-                  type: number
-                monthly_rent:
-                  type: number
-                city:
-                  type: string
-                reservation_expiry_date:
+                from:
                   type: string
                   format: datetime
+                to:
+                  type: string
+                  format: datetime
+                cancelled:
+                  type: boolean
+                user_id:
+                  type: number
+                apartment_id:
+                  type: number
               required:
-              - name
-              - description
-              - image
-              - interior
-              - maintenance_fee
-              - monthly_rent
-              - city
-              - reservation_expiry_date
+              - from
+              - to
+              - cancelled
+              - user_id
+              - apartment_id
+  "/user/{user_id}/leases/{id}":
+    parameters:
+    - name: user_id
+      in: path
+      description: user_id
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show lease
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update lease
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update lease
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete lease
+      responses:
+        '200':
+          description: successful
+  "/users":
+    get:
+      summary: list users
+      responses:
+        '200':
+          description: successful
 servers:
 - url: http://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:3000
