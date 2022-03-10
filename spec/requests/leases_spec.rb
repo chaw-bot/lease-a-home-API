@@ -4,7 +4,6 @@ RSpec.describe 'leases', type: :request do
   # rubocop:disable Metrics/BlockLength
 
   path '/user/{user_id}/leases' do
-    # You'll want to customize the parameter types...
     parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
 
     get('list leases') do
