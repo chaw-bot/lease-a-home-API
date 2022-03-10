@@ -19,10 +19,12 @@ class LeasesController < ApplicationController
 
   # POST /leases
   def create
+    puts params, 'params'
     @lease = Lease.new(lease_params)
 
     if @lease.save
       @lease.apartment.reservation_expiry_date = @lease.to
+      @lease.apartment.save
       render json: @lease, status: :created
     else
       render json: @lease.errors, status: :unprocessable_entity
