@@ -2,7 +2,7 @@
 
 A project that enables prospective lessees to lease an apartment within a specified period of time.
 A lessee can see the available aprtments and interiors of the apartments.
-
+Here is the [Link](https://github.com/HENRYKC24/lease-a-home-frontend/tree/main) to the frontend repo.
 ## Built With
 
 - Ruby on Rails
