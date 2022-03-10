@@ -1,6 +1,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'leases', type: :request do
+  # rubocop:disable Metrics/BlockLength
 
   path '/user/{user_id}/leases' do
     # You'll want to customize the parameter types...
@@ -32,7 +33,7 @@ RSpec.describe 'leases', type: :request do
             from: { type: :string, format: :datetime },
             to: { type: :string, format: :datetime },
             cancelled: { type: :boolean },
-            user_id: { type: :number},
+            user_id: { type: :number },
             apartment_id: { type: :number }
           },
           required: %w[from to cancelled user_id apartment_id]
@@ -119,4 +120,5 @@ RSpec.describe 'leases', type: :request do
       end
     end
   end
+  # rubocop:enable Metrics/BlockLength
 end
